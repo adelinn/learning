@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30114.105
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{345B9CC9-4AB0-40E0-BA6B-0FADDD961EC6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dotNetLearn", "Application\dotNetLearn.csproj", "{D5E11DF2-8C7C-49CE-A262-98634073242D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{345B9CC9-4AB0-40E0-BA6B-0FADDD961EC6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{345B9CC9-4AB0-40E0-BA6B-0FADDD961EC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{345B9CC9-4AB0-40E0-BA6B-0FADDD961EC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{345B9CC9-4AB0-40E0-BA6B-0FADDD961EC6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D5E11DF2-8C7C-49CE-A262-98634073242D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5E11DF2-8C7C-49CE-A262-98634073242D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5E11DF2-8C7C-49CE-A262-98634073242D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5E11DF2-8C7C-49CE-A262-98634073242D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

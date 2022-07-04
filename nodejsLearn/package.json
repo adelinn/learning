@@ -1,0 +1,46 @@
+{
+  "name": "nodejs-learn",
+  "description": "A test project",
+  "version": "0.0.0",
+  "homepage": "",
+  "private": true,
+  "main": "src",
+  "keywords": [
+    "feathers"
+  ],
+  "author": {
+    "name": "Adelin Niculae",
+    "email": "adelin.nic3@gmail.com"
+  },
+  "contributors": [],
+  "bugs": {},
+  "directories": {
+    "lib": "src",
+    "test": "test/",
+    "config": "config/"
+  },
+  "engines": {
+    "node": "^16.0.0",
+    "npm": ">= 3.0.0"
+  },
+  "scripts": {
+    "test": "npm run lint && npm run compile && npm run mocha",
+    "lint": "npx eslint src/. test/. --config .eslintrc.json --ext .ts --fix",
+    "dev": "npx ts-node-dev --no-notify src/",
+    "start": "npm run compile && node lib/",
+    "mocha": "npx mocha --require ts-node/register --require source-map-support/register \"test/**/*.ts\" --recursive --exit",
+    "compile": "npx shx rm -rf lib/ && tsc"
+  },
+  "standard": {
+    "env": [
+      "mocha"
+    ],
+    "ignore": []
+  },
+  "types": "lib/",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.30.0",
+    "@typescript-eslint/parser": "^5.30.0",
+    "eslint": "^8.18.0"
+  }
+}
