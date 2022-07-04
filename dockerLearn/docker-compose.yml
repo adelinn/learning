@@ -18,7 +18,9 @@ services:
     ports:
       - "5050:80"
   dotnet-api:
-    build: ../dotNetLearn
+    build: 
+      context: ../dotNetLearn
+      dockerfile: Dockerfile
     environment:
       FRONTEND_URL: 'http://localhost'
       ASPNETCORE_ENVIRONMENT: 'Development'
@@ -31,6 +33,10 @@ services:
       - '4443:443'
     volumes:
       - ${HOME}/.aspnet/https:/https/
+  dotnet-api-tests:
+    build: 
+      context: ../dotNetLearn
+      dockerfile: tests.Dockerfile
   vue-frontend:
     build: ../vueLearn
     ports:
