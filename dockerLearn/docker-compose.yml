@@ -41,12 +41,11 @@ services:
     build: ../vueLearn
     ports:
       - '80:80'
-  # node-api:
-  #   image: mysql:8.0.28
-  #   environment:
-  #     MYSQL_DATABASE: 'super-app'
-  #     MYSQL_ROOT_PASSWORD: '$SuperApp1'
-  #   ports:
-  #     - '3306:3306'
-  #   expose:
-  #     - '3306'
+  node-api:
+    build: ../nodejsLearn
+    environment:
+      - DEBUG=*
+    ports:
+      - '3030:3030'
+    expose:
+      - '3030'
