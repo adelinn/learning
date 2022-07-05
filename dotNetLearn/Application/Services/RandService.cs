@@ -5,7 +5,11 @@ namespace dotNetLearn.Services;
 
 public class RandService
 {
-    static RandDBContext db = new RandDBContext();
+    private readonly RandDBContext db;
+    public RandService(RandDBContext? dbCtx = null){
+        if(dbCtx != null) db = dbCtx;
+        else db = new RandDBContext();
+    }
 
     public List<RandRecord> GetAll() => db.RandRecords.ToList();
     public List<RandRecord> Get(DateTime timestamp) => db.RandRecords.Where(p => p.Timestamp <= timestamp).ToList();

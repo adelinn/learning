@@ -11,11 +11,11 @@ public class RandommController : ControllerBase
 {
 
     private readonly ILogger<RandommController> _logger;
-    private RandService randGenerator = new RandService();
+    private RandService randGenerator;
 
-    public RandommController(ILogger<RandommController> logger)
-    {
+    public RandommController(ILogger<RandommController> logger, RandDBContext context){
         _logger = logger;
+        randGenerator = new RandService(context);
     }
 
     [EnableCors("frontend")]
