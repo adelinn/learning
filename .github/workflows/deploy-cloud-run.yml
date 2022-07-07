@@ -18,6 +18,12 @@ jobs:
       with:
         credentials_json: '${{ secrets.GCP_SA_KEY }}'
 
+    - id: 'deployNODE'
+      uses: 'google-github-actions/deploy-cloudrun@v0'
+      with:
+        service: 'nodejs-api'
+        source: './nodejsLearn'
+
     - id: 'deployNET'
       uses: 'google-github-actions/deploy-cloudrun@v0'
       with:
@@ -29,11 +35,6 @@ jobs:
         env_vars: |
           FRONTEND_URL='http://localhost'
           ASPNETCORE_ENVIRONMENT='Development'
-          ASPNETCORE_URLS='https://+;http://+:8080'
-          ASPNETCORE_HTTPS_PORT=443
-          ASPNETCORE_Kestrel__Certificates__Default__Path='/tmp/https/aspnetapp_pfx'
-    - id: 'deployNODE'
-      uses: 'google-github-actions/deploy-cloudrun@v0'
-      with:
-        service: 'nodejs-api'
-        source: './nodejsLearn'
+          ASPNETCORE_URLS='http://+:8080'
+#          ASPNETCORE_HTTPS_PORT=443
+#          ASPNETCORE_Kestrel__Certificates__Default__Path='/tmp/https/aspnetapp_pfx'
