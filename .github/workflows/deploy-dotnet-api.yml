@@ -34,6 +34,7 @@ jobs:
         env_vars: |
           FRONTEND_URL=http://localhost
           ASPNETCORE_ENVIRONMENT=Development
+          DB_PORT=5432
 #          ASPNETCORE_URLS=http://+:8080
 #          ASPNETCORE_HTTPS_PORT=443
 #          ASPNETCORE_Kestrel__Certificates__Default__Path='/tmp/https/aspnetapp_pfx'
