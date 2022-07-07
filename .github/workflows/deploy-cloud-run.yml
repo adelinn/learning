@@ -28,7 +28,7 @@ jobs:
           ASPNETCORE_Kestrel__Certificates__Default__Password=aspnet-ssl-cert-pass:latest
         env_vars: |
           FRONTEND_URL='http://localhost'
-          ASPNETCORE_ENVIRONMENT='Production'
+          ASPNETCORE_ENVIRONMENT='Development'
           ASPNETCORE_URLS='https://+;http://+:$PORT'
           ASPNETCORE_HTTPS_PORT=443
           ASPNETCORE_Kestrel__Certificates__Default__Path='/https/aspnetapp.pfx'
