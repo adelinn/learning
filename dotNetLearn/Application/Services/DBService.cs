@@ -9,6 +9,7 @@ public class RandDBContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
         string host = Environment.GetEnvironmentVariable("DB_HOST")??"host.docker.internal";
+        if((Environment.GetEnvironmentVariable("INSTANCE_CONNECTION_NAME")??"")!="") host = (Environment.GetEnvironmentVariable("DB_SOCKET_PATH")??"/cloudsql")+"/"+Environment.GetEnvironmentVariable("INSTANCE_CONNECTION_NAME");
         string port = Environment.GetEnvironmentVariable("DB_PORT")??"5435";
         string db_name = Environment.GetEnvironmentVariable("DB_NAME")??"test_db";
         string user = Environment.GetEnvironmentVariable("DB_USER")??"root";
