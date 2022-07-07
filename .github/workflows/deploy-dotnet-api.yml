@@ -1,4 +1,4 @@
-name: Deploy to GCP Cloud Run
+name: Deploy DotNet API to GCP Cloud Run
 
 # Controls when the workflow will run
 on:
