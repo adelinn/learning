@@ -29,7 +29,7 @@ jobs:
         env_vars: |
           FRONTEND_URL='http://localhost'
           ASPNETCORE_ENVIRONMENT='Development'
-          ASPNETCORE_URLS='https://+;http://+:$PORT'
+          ASPNETCORE_URLS='https://+;http://+:8080'
           ASPNETCORE_HTTPS_PORT=443
           ASPNETCORE_Kestrel__Certificates__Default__Path='/https/aspnetapp.pfx'
     - id: 'deployNODE'
