@@ -24,8 +24,8 @@ jobs:
         service: 'dotnet-api'
         source: './dotNetLearn'
         secrets: |
-          /https/aspnetapp.pfx=aspnet-ssl-cert
-          ASPNETCORE_Kestrel__Certificates__Default__Password=aspnet-ssl-cert-pass
+          /https/aspnetapp.pfx=aspnet-ssl-cert:latest
+          ASPNETCORE_Kestrel__Certificates__Default__Password=aspnet-ssl-cert-pass:latest
         env_vars: |
           FRONTEND_URL='http://localhost'
           ASPNETCORE_ENVIRONMENT='Production'
