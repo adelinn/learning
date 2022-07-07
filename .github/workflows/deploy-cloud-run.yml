@@ -29,13 +29,11 @@ jobs:
         env_vars: |
           FRONTEND_URL='http://localhost'
           ASPNETCORE_ENVIRONMENT='Production'
-          ASPNETCORE_URLS='https://+;http://+'
+          ASPNETCORE_URLS='https://+;http://+:$PORT'
           ASPNETCORE_HTTPS_PORT=443
           ASPNETCORE_Kestrel__Certificates__Default__Path='/https/aspnetapp.pfx'
-          PORT=80
     - id: 'deployNODE'
       uses: 'google-github-actions/deploy-cloudrun@v0'
       with:
         service: 'nodejs-api'
         source: './nodejsLearn'
-        env_vars: 'PORT=80'
