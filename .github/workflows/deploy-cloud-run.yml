@@ -1,0 +1,30 @@
+name: Deploy to GCP Cloud Run
+
+# Controls when the workflow will run
+on:
+  workflow_dispatch:
+
+jobs:
+  job_id:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+
+    steps:
+    - uses: actions/checkout@v3
+    - id: 'auth'
+      uses: 'google-github-actions/auth@v0'
+      with:
+        credentials_json: '${{ secrets.GCP_SA_KEY }}'
+
+    - id: 'deployNET'
+      uses: 'google-github-actions/deploy-cloudrun@v0'
+      with:
+        service: 'dotnet-api'
+        source: './dotNetLearn'
+    - id: 'deployNODE'
+      uses: 'google-github-actions/deploy-cloudrun@v0'
+      with:
+        service: 'nodejs-api'
+        source: './nodejsLearn'
