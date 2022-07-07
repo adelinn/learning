@@ -23,15 +23,17 @@ jobs:
       with:
         service: 'nodejs-api'
         source: './nodejsLearn'
+        region: 'europe-west1'
 
     - id: 'deployNET'
       uses: 'google-github-actions/deploy-cloudrun@v0'
       with:
         service: 'dotnet-api'
         source: './dotNetLearn'
+        region: 'europe-west1'
         secrets: |
           /tmp/https/aspnetapp_pfx=aspnet-ssl-cert:latest
-          ASPNETCORE_Kestrel__Certificates__Default__Password=aspnet-ssl-cert-pass:latest
+#          ASPNETCORE_Kestrel__Certificates__Default__Password=aspnet-ssl-cert-pass:latest
         env_vars: |
           FRONTEND_URL='http://localhost'
           ASPNETCORE_ENVIRONMENT='Development'
