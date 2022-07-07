@@ -24,20 +24,19 @@ services:
     environment:
       FRONTEND_URL: 'http://localhost'
       ASPNETCORE_ENVIRONMENT: 'Development'
-      ASPNETCORE_URLS: 'https://+;http://+'
+      ASPNETCORE_URLS: 'https://+;http://+:8080'
       ASPNETCORE_HTTPS_PORT: 4443
       ASPNETCORE_Kestrel__Certificates__Default__Password: '1234'
       ASPNETCORE_Kestrel__Certificates__Default__Path: '/https/aspnetapp.pfx'
-      PORT: 80
     ports:
-      - '8080:80'
+      - '8080:8080'
       - '4443:443'
     volumes:
       - ${HOME}/.aspnet/https:/https/
   dotnet-api-tests:
     build: 
       context: ../dotNetLearn
-      dockerfile: tests.Dockerfile.old
+      dockerfile: tests.Dockerfile.disable
   vue-frontend:
     build: ../vueLearn
     ports:
