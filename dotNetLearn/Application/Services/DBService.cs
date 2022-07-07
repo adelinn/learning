@@ -7,8 +7,14 @@ public class RandDBContext : DbContext
 {
     public DbSet<RandRecord> RandRecords { get; set; }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseNpgsql("Host="+(Environment.GetEnvironmentVariable("DB_HOST")??"host.docker.internal")+";Port=5435;Username=root;Password=root;Database=test_db");
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
+        string host = Environment.GetEnvironmentVariable("DB_HOST")??"host.docker.internal";
+        string port = Environment.GetEnvironmentVariable("DB_PORT")??"5435";
+        string db_name = Environment.GetEnvironmentVariable("DB_NAME")??"test_db";
+        string user = Environment.GetEnvironmentVariable("DB_USER")??"root";
+        string pass = Environment.GetEnvironmentVariable("DB_PASS")??"root";
+        optionsBuilder.UseNpgsql("Host="+host+";Port="+port+";Username="+user+";Password="+pass+";Database="+db_name);
+    }
     
     // protected override void OnModelCreating(ModelBuilder modelBuilder)
     // {
