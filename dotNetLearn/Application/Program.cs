@@ -29,6 +29,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+if((Environment.GetEnvironmentVariable("ASPNETCORE_Kestrel__Certificates__Default__Path")??"")!="")
 app.UseHttpsRedirection();
 
 app.UseCors();
