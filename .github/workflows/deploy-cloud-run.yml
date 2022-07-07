@@ -24,14 +24,14 @@ jobs:
         service: 'dotnet-api'
         source: './dotNetLearn'
         secrets: |
-          /tmp/https/aspnetapp.pfx=aspnet-ssl-cert:latest
+          /tmp/https/aspnetapp_pfx=aspnet-ssl-cert:latest
           ASPNETCORE_Kestrel__Certificates__Default__Password=aspnet-ssl-cert-pass:latest
         env_vars: |
           FRONTEND_URL='http://localhost'
           ASPNETCORE_ENVIRONMENT='Development'
           ASPNETCORE_URLS='https://+;http://+:8080'
           ASPNETCORE_HTTPS_PORT=443
-          ASPNETCORE_Kestrel__Certificates__Default__Path='/tmp/https/aspnetapp.pfx'
+          ASPNETCORE_Kestrel__Certificates__Default__Path='/tmp/https/aspnetapp_pfx'
     - id: 'deployNODE'
       uses: 'google-github-actions/deploy-cloudrun@v0'
       with:
