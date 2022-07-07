@@ -2,6 +2,7 @@ using dotNetLearn.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
+if((Environment.GetEnvironmentVariable("PORT")??"")!="") builder.WebHost.UseUrls("http://+:"+Environment.GetEnvironmentVariable("PORT"));
 // Add services to the container.
 builder.Services.AddCors(options =>
 {
