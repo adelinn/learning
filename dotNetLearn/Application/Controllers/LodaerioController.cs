@@ -10,16 +10,16 @@ namespace dotNetLearn.Controllers;
 public class LoaderioController : ControllerBase
 {
 
-    private readonly ILogger<RandommController> _logger;
+    private readonly ILogger<LoaderioController> _logger;
     private RandService randGenerator;
 
-    public LoaderioController(ILogger<RandommController> logger, RandDBContext context){
+    public LoaderioController(ILogger<LoaderioController> logger, RandDBContext context){
         _logger = logger;
         randGenerator = new RandService(context);
     }
 
     [EnableCors("frontend")]
-    [HttpGet(Name = "GetRandom")]
+    [HttpGet(Name = "GetLoaderio")]
     public HttpResponseMessage Get() {
         var resp = new HttpResponseMessage(HttpStatusCode.OK);
         resp.Content = new StringContent("loaderio-9ddd6b937bd35ed2843a048a2b73d085", System.Text.Encoding.UTF8, "text/plain");

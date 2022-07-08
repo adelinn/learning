@@ -7,7 +7,7 @@ public class RandDBContext : DbContext
 {
     public DbSet<RandRecord> RandRecords { get; set; }
 
-    RandDBContext(DbContextOptions<RandDBContext> opt): base(opt){
+    public RandDBContext(DbContextOptions<RandDBContext> opt): base(opt){
         //
     }
     

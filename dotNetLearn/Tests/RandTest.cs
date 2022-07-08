@@ -1,5 +1,6 @@
 using dotNetLearn.Services;
 using dotNetLearn.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Tests;
 
@@ -9,7 +10,9 @@ public class RandTest
     [TestMethod]
     public void TestMethod1()
     {
-        RandService testObj = new RandService();
+        DBConnect.connect(new DbContextOptionsBuilder());
+        RandDBContext db = new RandDBContext(DBConnect.opts);
+        RandService testObj = new RandService(db);
         //testObj.Add();
         //testObj.Add();
         List<RandRecord> toTest = testObj.GetAll();

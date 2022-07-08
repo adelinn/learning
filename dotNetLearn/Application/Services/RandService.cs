@@ -1,14 +1,14 @@
 using dotNetLearn.Models;
-using dotNetLearn.Services;
+using Microsoft.EntityFrameworkCore;
 
 namespace dotNetLearn.Services;
 
 public class RandService
 {
     private readonly RandDBContext db;
-    public RandService(RandDBContext? dbCtx = null){
-        if(dbCtx != null) db = dbCtx;
-        else db = new RandDBContext();
+    public RandService(RandDBContext dbCtx){
+        db = dbCtx;
+        //else db = new RandDBContext(new DbContextOptions<RandDBContext>());
     }
 
     public List<RandRecord> GetAll() => db.RandRecords.ToList();
