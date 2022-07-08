@@ -10,6 +10,9 @@ jobs:
     permissions:
       contents: 'read'
       id-token: 'write'
+    defaults:
+      run:
+        working-directory: vueLearn
 
     steps:
     - uses: actions/checkout@v3
@@ -17,7 +20,7 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: 16
-    - run: ls -a && ls ../ && npm ci && npm run build
+    - run: npm ci && npm run build
 
     - id: 'auth'
       uses: 'google-github-actions/auth@v0'
