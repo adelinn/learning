@@ -6,6 +6,10 @@ namespace dotNetLearn.Services;
 public class RandDBContext : DbContext
 {
     public DbSet<RandRecord> RandRecords { get; set; }
+
+    RandDBContext(DbContextOptions<RandDBContext> opt): base(opt){
+        //
+    }
     
     // protected override void OnModelCreating(ModelBuilder modelBuilder)
     // {
