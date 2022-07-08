@@ -16,8 +16,7 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: 16
-    - run: npm ci && npm run build
-      working-directory: vueLearn
+    - run: ls -a && ls ../ && npm ci && npm run build
 
     - id: 'auth'
       uses: 'google-github-actions/auth@v0'
