@@ -5,38 +5,47 @@ on:
   workflow_dispatch:
 
 jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout to the branch
+        uses: actions/checkout@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Log in to container registry
+        uses: docker/login-action@v1
+        with:
+          registry: bccrandomchallenges.azurecr.io
+          username: ${{ secrets.DOTNETAPI_REGISTRY_USERNAME }}
+          password: ${{ secrets.DOTNETAPI_REGISTRY_PASSWORD }}
+
+      - name: Build and push container image to registry
+        uses: docker/build-push-action@v2
+        with:
+          push: true
+          tags: bccrandomchallenges.azurecr.io/nodejsapi:${{ github.sha }}
+          file: ./nodejsLearn/Dockerfile
+          context: ./nodejsLearn/
+
+
   deploy:
     runs-on: ubuntu-latest
+    needs: build
+    
     steps:
-    - uses: actions/checkout@v3
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.DOTNETAPI_AZURE_CREDENTIALS }}
 
-    - name: 'Login via Azure CLI'
-      uses: azure/login@v1
-      with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-    - uses: azure/docker-login@v1
-      with:
-        login-server: bccrandomchallenges.azurecr.io
-        username: ${{ secrets.AZURE_REGISTRY_USERNAME }}
-        password: ${{ secrets.AZURE_REGISTRY_PASSWORD }}
-    - run: |
-        cd nodejsLearn
-        docker build . -t bccrandomchallenges.azurecr.io/nodejsapi:${{ github.sha }}
-        docker push bccrandomchallenges.azurecr.io/nodejsapi:${{ github.sha }}
-
-#     - name: 'Deploy to Azure Container Instances'
-#       uses: 'azure/aci-deploy@v1'
-#       with:
-#         resource-group: BCC-Challenges
-#         dns-name-label: bccrandomchallenges-nodejs-api
-#         image: bccrandomchallenges.azurecr.io/nodejsapi:${{ github.sha }}
-#         registry-username: ${{ secrets.AZURE_REGISTRY_USERNAME }}
-#         registry-password: ${{ secrets.AZURE_REGISTRY_PASSWORD }}
-#         name: nodejs-api
-#         location: 'North Europe'
-#         gitrepo-dir: ./nodejsLearn/
-#         secure-environment-variables: |
-#           DB_CONN_STR=${{ secrets.AZURE_DB_CONN_STR_URL }}
-#         environment-variables: |
-#           PORT=80
+      - name: Deploy to containerapp
+        uses: azure/CLI@v1
+        with:
+          inlineScript: |
+            az config set extension.use_dynamic_install=yes_without_prompt
+            az containerapp registry set -n nodejsapi -g BCC-Challenges --server bccrandomchallenges.azurecr.io --username  ${{ secrets.DOTNETAPI_REGISTRY_USERNAME }} --password ${{ secrets.DOTNETAPI_REGISTRY_PASSWORD }}
+            az containerapp update -n nodejsapi -g BCC-Challenges --image bccrandomchallenges.azurecr.io/nodejsapi:${{ github.sha }} --set-env-vars "DB_CONN_STR=secretref:pg-conn-str" --set-env-vars "PORT=80"
