@@ -19,7 +19,7 @@ jobs:
 
     steps:
       - name: Checkout to the branch
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
@@ -27,7 +27,7 @@ jobs:
       - name: Log in to container registry
         uses: docker/login-action@v1
         with:
-          registry: bccrandomchallenges.azurecr.io/dotnetapi
+          registry: bccrandomchallenges.azurecr.io
           username: ${{ secrets.DOTNETAPI_REGISTRY_USERNAME }}
           password: ${{ secrets.DOTNETAPI_REGISTRY_PASSWORD }}
 
@@ -35,9 +35,9 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: bccrandomchallenges.azurecr.io/dotnetapi/dotnetapi:${{ github.sha }}
-          file: ./dotNetLearn/dockerfile/Dockerfile
-          context: ./dotNetLearn/dockerfile/
+          tags: bccrandomchallenges.azurecr.io/dotnetapi:${{ github.sha }}
+          file: ./dotNetLearn/Dockerfile
+          context: ./dotNetLearn/
 
 
   deploy:
@@ -56,5 +56,5 @@ jobs:
         with:
           inlineScript: |
             az config set extension.use_dynamic_install=yes_without_prompt
-            az containerapp registry set -n dotnetapi -g BCC-Challenges --server bccrandomchallenges.azurecr.io/dotnetapi --username  ${{ secrets.DOTNETAPI_REGISTRY_USERNAME }} --password ${{ secrets.DOTNETAPI_REGISTRY_PASSWORD }}
+            az containerapp registry set -n dotnetapi -g BCC-Challenges --server bccrandomchallenges.azurecr.io --username  ${{ secrets.DOTNETAPI_REGISTRY_USERNAME }} --password ${{ secrets.DOTNETAPI_REGISTRY_PASSWORD }}
             az containerapp update -n dotnetapi -g BCC-Challenges --image bccrandomchallenges.azurecr.io/dotnetapi/dotnetapi:${{ github.sha }}
