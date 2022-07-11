@@ -12,6 +12,7 @@ export default function (app: Application): void {
       database: process.env.DB_NAME, // e.g. 'my-database'
       host: dbSocketPath+'/'+process.env.INSTANCE_CONNECTION_NAME, // e.g. '/cloudsql/project:region:instance'
     };
+  else if(process.env.DB_CONN_STR) conn = process.env.DB_CONN_STR;
   else conn = connection;
   const db = knex({ client, connection: conn });
 

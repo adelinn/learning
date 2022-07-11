@@ -11,7 +11,9 @@ public static class DBConnect{
         string db_name = Environment.GetEnvironmentVariable("DB_NAME")??"test_db";
         string user = Environment.GetEnvironmentVariable("DB_USER")??"root";
         string pass = Environment.GetEnvironmentVariable("DB_PASS")??"root";
-        o.UseNpgsql("Host="+host+";Port="+port+";Username="+user+";Password="+pass+";Database="+db_name);
+        if((Environment.GetEnvironmentVariable("DB_CONN_STR")??"")!="")
+            o.UseNpgsql(Environment.GetEnvironmentVariable("DB_CONN_STR")??"");
+        else o.UseNpgsql("Host="+host+";Port="+port+";Username="+user+";Password="+pass+";Database="+db_name+";Ssl Mode=Require;");
         //return o;
     }
 
