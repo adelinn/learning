@@ -4,8 +4,7 @@ using dotNetLearn.Services;
 namespace dotNetLearn.Models;
 
 public static class DBConnect{
-    public static DbContextOptions<RandDBContext> opts;
-    public static Action<DbContextOptionsBuilder> connect = o=>{
+    public static void prepare(DbContextOptionsBuilder o){
         string host = Environment.GetEnvironmentVariable("DB_HOST")??"host.docker.internal";
         if((Environment.GetEnvironmentVariable("INSTANCE_CONNECTION_NAME")??"")!="") host = (Environment.GetEnvironmentVariable("DB_SOCKET_PATH")??"/cloudsql")+"/"+Environment.GetEnvironmentVariable("INSTANCE_CONNECTION_NAME");
         string port = Environment.GetEnvironmentVariable("DB_PORT")??"5435";
@@ -13,7 +12,7 @@ public static class DBConnect{
         string user = Environment.GetEnvironmentVariable("DB_USER")??"root";
         string pass = Environment.GetEnvironmentVariable("DB_PASS")??"root";
         o.UseNpgsql("Host="+host+";Port="+port+";Username="+user+";Password="+pass+";Database="+db_name);
-        opts = (DbContextOptions<RandDBContext>)o.Options;
-    };
+        //return o;
+    }
 
 }

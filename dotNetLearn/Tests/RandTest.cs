@@ -10,8 +10,10 @@ public class RandTest
     [TestMethod]
     public void TestMethod1()
     {
-        DBConnect.connect(new DbContextOptionsBuilder());
-        RandDBContext db = new RandDBContext(DBConnect.opts);
+        var contextOptions = new DbContextOptionsBuilder<RandDBContext>();
+        DBConnect.prepare(contextOptions);
+        RandDBContext db = new RandDBContext(contextOptions.Options);
+
         RandService testObj = new RandService(db);
         //testObj.Add();
         //testObj.Add();
