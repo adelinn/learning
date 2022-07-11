@@ -48,4 +48,4 @@ jobs:
           inlineScript: |
             az config set extension.use_dynamic_install=yes_without_prompt
             az containerapp registry set -n nodejsapi -g BCC-Challenges --server bccrandomchallenges.azurecr.io --username  ${{ secrets.DOTNETAPI_REGISTRY_USERNAME }} --password ${{ secrets.DOTNETAPI_REGISTRY_PASSWORD }}
-            az containerapp update -n nodejsapi -g BCC-Challenges --image bccrandomchallenges.azurecr.io/nodejsapi:${{ github.sha }} --set-env-vars "DB_CONN_STR=secretref:pg-conn-str PORT=80"
+            az containerapp update -n nodejsapi -g BCC-Challenges --image bccrandomchallenges.azurecr.io/nodejsapi:${{ github.sha }} --set-env-vars DB_CONN_STR=secretref:pg-conn-str PORT=80
