@@ -20,9 +20,7 @@ public class LoaderioController : ControllerBase
 
     [EnableCors("frontend")]
     [HttpGet(Name = "GetLoaderio")]
-    public HttpResponseMessage Get() {
-        var resp = new HttpResponseMessage(HttpStatusCode.OK);
-        resp.Content = new StringContent("loaderio-df7f153098e186d46b4f66374b713d45", System.Text.Encoding.UTF8, "text/plain");
-        return resp;
+    public ActionResult Get() {
+        return Content("loaderio-df7f153098e186d46b4f66374b713d45");
     }
 }
