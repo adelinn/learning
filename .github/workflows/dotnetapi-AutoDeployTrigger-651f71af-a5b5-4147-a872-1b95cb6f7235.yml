@@ -1,4 +1,4 @@
-name: Trigger auto deployment for dotnetapi
+name: Deploy DotNet API to Azure Container App
 
 # When this action will be executed
 on:
