@@ -41,3 +41,4 @@ jobs:
         environment-variables: |
           FRONTEND_URL=https://storage.googleapis.com
           ASPNETCORE_ENVIRONMENT=Development
+          PORT=80
