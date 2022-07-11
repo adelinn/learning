@@ -17,7 +17,6 @@ export default function (app: Application): void {
     Model: createModel(app),
     paginate: app.get('paginate')
   };
-  options.paginate.max = 1000;
 
   // Initialize our service with any options it requires
   app.use('/random', new RandService(options, app));

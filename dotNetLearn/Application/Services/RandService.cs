@@ -11,7 +11,7 @@ public class RandService
         //else db = new RandDBContext(new DbContextOptions<RandDBContext>());
     }
 
-    public List<RandRecord> GetAll() => db.RandRecords.ToList();
+    public List<RandRecord> GetAll() => db.RandRecords.Take(1000).ToList();
     public List<RandRecord> Get(DateTime timestamp) => db.RandRecords.Where(p => p.Timestamp <= timestamp).ToList();
     public void Add() {
         RandRecord toBeAdded = new RandRecord();
