@@ -34,7 +34,7 @@ jobs:
         registry-username: ${{ secrets.AZURE_REGISTRY_USERNAME }}
         registry-password: ${{ secrets.AZURE_REGISTRY_PASSWORD }}
         name: dotnet-api
-        location: 'nord eu'
+        location: 'North Europe'
         gitrepo-dir: ./dotNetLearn/
         secure-environment-variables: |
           DB_CONN_STR=${{ secrets.AZURE_DB_CONN_STR_ADO }}
