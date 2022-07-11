@@ -6,7 +6,7 @@ using System.Net;
 namespace dotNetLearn.Controllers;
 
 [ApiController]
-[Route("loaderio-9ddd6b937bd35ed2843a048a2b73d085")]
+[Route("loaderio-df7f153098e186d46b4f66374b713d45")]
 public class LoaderioController : ControllerBase
 {
 
@@ -22,7 +22,7 @@ public class LoaderioController : ControllerBase
     [HttpGet(Name = "GetLoaderio")]
     public HttpResponseMessage Get() {
         var resp = new HttpResponseMessage(HttpStatusCode.OK);
-        resp.Content = new StringContent("loaderio-9ddd6b937bd35ed2843a048a2b73d085", System.Text.Encoding.UTF8, "text/plain");
+        resp.Content = new StringContent("loaderio-df7f153098e186d46b4f66374b713d45", System.Text.Encoding.UTF8, "text/plain");
         return resp;
     }
 }
