@@ -7,5 +7,5 @@ COPY . .
 # RUN echo "VITE_DOTNET_API=$VITE_DOTNET_API" > .env
 # RUN echo "VITE_NODE_API=$VITE_NODE_API" >> .env
 EXPOSE $PORT
-ENTRYPOINT [ "npm", "run", "start" ]
+ENTRYPOINT [ "npm", "run", "start", "--loglevel", "verbose" ]
 # runs on port 3030
