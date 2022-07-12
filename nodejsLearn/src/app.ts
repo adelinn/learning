@@ -41,7 +41,7 @@ app.use('/', express.static(app.get('public')));
 app.configure(express.rest());
 
 
-app.configure(knex);
+//app.configure(knex);
 
 
 // Configure other middleware (see `middleware/index.ts`)
