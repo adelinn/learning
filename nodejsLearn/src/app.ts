@@ -45,11 +45,11 @@ app.configure(express.rest());
 
 
 // Configure other middleware (see `middleware/index.ts`)
-app.configure(middleware);
+//app.configure(middleware);
 // Set up our services (see `services/index.ts`)
-app.configure(services);
+//app.configure(services);
 // Set up event channels (see channels.ts)
-app.configure(channels);
+//app.configure(channels);
 
 // Configure a middleware for 404s and the error handler
 app.use(express.notFound());
