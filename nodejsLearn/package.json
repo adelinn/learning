@@ -26,7 +26,7 @@
   "scripts": {
     "test": "npm run lint && npm run compile && npm run mocha",
     "lint": "npx eslint src/. test/. --config .eslintrc.json --ext .ts --fix",
-    "dev": "npx ts-node-dev --debug --no-notify src/",
+    "dev": "npx --loglevel verbose ts-node-dev --debug --no-notify src/",
     "start": "npm run compile && node lib/",
     "mocha": "npx mocha --require ts-node/register --require source-map-support/register \"test/**/*.ts\" --recursive --exit",
     "compile": "npx shx rm -rf lib/ && npx tsc"
