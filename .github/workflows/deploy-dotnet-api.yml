@@ -29,12 +29,8 @@ jobs:
           DB_USER=pg-user:latest
           DB_PASS=pg-pass:latest
           DB_NAME=challenges-db-name:latest
-#          /tmp/https/aspnetapp_pfx=aspnet-ssl-cert:latest
-#          ASPNETCORE_Kestrel__Certificates__Default__Password=aspnet-ssl-cert-pass:latest
         env_vars: |
           FRONTEND_URL=https://storage.googleapis.com
           ASPNETCORE_ENVIRONMENT=Development
           DB_PORT=5432
-#          ASPNETCORE_URLS=http://+:8080
-#          ASPNETCORE_HTTPS_PORT=443
-#          ASPNETCORE_Kestrel__Certificates__Default__Path='/tmp/https/aspnetapp_pfx'
+          DB_NOSSL=true
