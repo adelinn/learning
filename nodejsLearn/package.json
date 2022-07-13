@@ -31,7 +31,7 @@
     "servee": "node src/index.js",
     "start": "npm run compile && npm run serve",
     "mocha": "npx mocha --require ts-node/register --require source-map-support/register \"test/**/*.ts\" --recursive --exit",
-    "compile": "npx shx rm -rf lib/ && npx tsc src/index.ts --target es2018 --outDir lib && echo \"tsc done compiling, beginning serving\""
+    "compile": "npx shx rm -rf lib/ && echo \"shx done executing, running tsc\" && npx tsc && echo \"tsc done compiling, beginning serving\""
   },
   "standard": {
     "env": [
