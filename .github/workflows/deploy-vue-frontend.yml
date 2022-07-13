@@ -20,7 +20,9 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: 16
-    - run: npm ci && npm run build
+    - run: npm ci && VITE_ARGS=$VITE npm run build-only
+      env:
+        VITE: DOTNET_API=https://dotnet-api-a2aofhar4a-ew.a.run.app/,NODE_API=https://nodejs-api-a2aofhar4a-ew.a.run.app/
 
     - id: 'auth'
       uses: 'google-github-actions/auth@v0'
