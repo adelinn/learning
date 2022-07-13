@@ -1,13 +1,13 @@
-// import express from '@feathersjs/express';
-// const app = express();
-// const server = app.listen(3030);
+import feathers from '@feathersjs/feathers';
+import express from '@feathersjs/express';
 
-// process.on('unhandledRejection', (reason, p) =>
-//   console.error('Unhandled Rejection at: Promise ', p, reason)
-// );
+const app = express(feathers());
+const server = app.listen(3030);
 
-// server.on('listening', () =>
-//   console.info('Feathers application started on http://%s:%d', "host.example.com", 3030)
-// );
+process.on('unhandledRejection', (reason, p) =>
+  console.error('Unhandled Rejection at: Promise ', p, reason)
+);
 
-console.log("it works");
+server.on('listening', () =>
+  console.info('Feathers application started on http://%s:%d', "host.example.com", 3030)
+);
