@@ -30,7 +30,7 @@
     "serve": "node --loglevel verbose lib/",
     "start": "npm run compile && npm run serve",
     "mocha": "npx mocha --require ts-node/register --require source-map-support/register \"test/**/*.ts\" --recursive --exit",
-    "compile": "npx shx rm -rf lib/ && npx --loglevel verbose tsc --verbose --build"
+    "compile": "npx shx rm -rf lib/ && npx --loglevel verbose tsc --build --verbose"
   },
   "standard": {
     "env": [
