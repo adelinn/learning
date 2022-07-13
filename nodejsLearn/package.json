@@ -30,9 +30,8 @@
     "serve": "node lib/",
     "servee": "node src/index.js",
     "clear": "npx shx rm -rf lib/",
-    "start": "npm run compile && npm run serve",
-    "mocha": "npx mocha --require ts-node/register --require source-map-support/register \"test/**/*.ts\" --recursive --exit",
-    "compile": "npx tsc; echo \"tsc done compiling, beginning serving\""
+    "start": "node lib/",
+    "mocha": "npx mocha --require ts-node/register --require source-map-support/register \"test/**/*.ts\" --recursive --exit"
   },
   "standard": {
     "env": [
