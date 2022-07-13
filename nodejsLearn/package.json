@@ -28,7 +28,7 @@
     "lint": "npx eslint src/. test/. --config .eslintrc.json --ext .ts --fix",
     "dev": "npx --loglevel verbose ts-node-dev --debug --no-notify src/",
     "serve": "node --loglevel verbose lib/",
-    "servee": "node --loglevel verbose src/index.js",
+    "servee": "node src/index.js",
     "start": "npm run compile && npm run serve",
     "mocha": "npx mocha --require ts-node/register --require source-map-support/register \"test/**/*.ts\" --recursive --exit",
     "compile": "npx shx rm -rf lib/ && npx --loglevel verbose tsc src/index.ts --target es2018 --outDir lib && echo \"tsc done compiling, beginning serving\""
