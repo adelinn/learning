@@ -1,5 +1,5 @@
-import feathers from '@feathersjs/feathers';
-import express from '@feathersjs/express';
+const express = require('@feathersjs/express');
+const feathers = require('@feathersjs/feathers');
 const app = express(feathers());
 const server = app.listen(3030);
 process.on('unhandledRejection', (reason, p) => console.error('Unhandled Rejection at: Promise ', p, reason));
