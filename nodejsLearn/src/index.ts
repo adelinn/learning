@@ -1,13 +1,11 @@
-import logger from './logger';
-import app from './app';
-
-const port = process.env.PORT || app.get('port');
-const server = app.listen(port);
+import express from '@feathersjs/express';
+const app = express();
+const server = app.listen(3030);
 
 process.on('unhandledRejection', (reason, p) =>
-  logger.error('Unhandled Rejection at: Promise ', p, reason)
+  console.error('Unhandled Rejection at: Promise ', p, reason)
 );
 
 server.on('listening', () =>
-  logger.info('Feathers application started on http://%s:%d', app.get('host'), port)
+  console.info('Feathers application started on http://%s:%d', "host.example.com", 3030)
 );

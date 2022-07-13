@@ -3,6 +3,8 @@ import { defineComponent } from 'vue'
 
 interface RandAPIResponse {numbers: number[],timestamp: string}
 
+const args = (<any>window).viteArgs;
+
 export default defineComponent({
     props: {
         apiURL: String
@@ -23,9 +25,9 @@ export default defineComponent({
             let startTime = performance.now();
             let randArr: RandAPIResponse[];
             try{
-                randArr = await fetch(import.meta.env.VITE_DOTNET_API+'random').then(x=>x.json());
+                randArr = await fetch(args.DOTNET_API+'random').then(x=>x.json());
             }catch{
-                randArr = await fetch(import.meta.env.VITE_DOTNET_API+'random').then(x=>x.json());
+                randArr = await fetch(args.DOTNET_API+'random').then(x=>x.json());
             }
             this.randRespDotNet = '['+randArr.map(x=>x.numbers.join(',')).join('],[')+']';
             this.dotnetTime = performance.now()-startTime;
@@ -35,9 +37,9 @@ export default defineComponent({
             let startTime = performance.now();
             let randArr: RandAPIResponse[];
             try{
-                randArr = await fetch(import.meta.env.VITE_NODE_API+'random').then(x=>x.json());
+                randArr = await fetch(args.NODE_API+'random').then(x=>x.json());
             }catch{
-                randArr = await fetch(import.meta.env.VITE_NODE_API+'random').then(x=>x.json());
+                randArr = await fetch(args.NODE_API+'random').then(x=>x.json());
             }
             this.randRespNodeJS = '['+randArr.map(x=>x.numbers.join(',')).join('],[')+']';
             this.nodejsTime = performance.now()-startTime;

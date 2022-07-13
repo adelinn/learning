@@ -4,9 +4,8 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm install
 COPY . .
-# RUN echo "VITE_DOTNET_API=$VITE_DOTNET_API" > .env
-# RUN echo "VITE_NODE_API=$VITE_NODE_API" >> .env
-RUN npm run build
+ARG VITE=DOTNET_API=https://dotnet-api-a2aofhar4a-ew.a.run.app/,NODE_API=https://nodejs-api-a2aofhar4a-ew.a.run.app/
+RUN VITE_ARGS=$VITE npm run build-only
 
 # production stage
 FROM nginx:stable-alpine as production-stage

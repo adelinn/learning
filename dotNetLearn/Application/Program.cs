@@ -1,5 +1,4 @@
 using dotNetLearn.Services;
-using dotNetLearn.Models;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);

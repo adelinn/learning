@@ -1,17 +1,20 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from '@/components/HelloWorld.vue'
+import { VueElement } from 'vue';
 
 const settings = {
   apiURL: "https://localhost:4443/"
 };
+
+(<any>window).viteArgs = import.meta.env.VITE_ARGS?.split(',').reduce((a:any, v:any) => ({ ...a, [v.split('=')[0]]: v.split('=')[1]}), {});
 
 const msg = "Random number fetcher";
 </script>
 
 <template>
   <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
+    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />AAA{{12}}
 
     <div class="wrapper">
       <HelloWorld :msg="msg" />
