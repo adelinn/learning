@@ -30,9 +30,9 @@
     "serve": "node lib/",
     "servee": "node src/index.js",
     "clear": "npx shx rm -rf lib/",
-    "start": "npm run compile && npm run serve",
+    "start": "npm run compile && npm run servee",
     "mocha": "npx mocha --require ts-node/register --require source-map-support/register \"test/**/*.ts\" --recursive --exit",
-    "compile": "npm run clear; echo \"shx done executing, running tsc\"; npx tsc; echo \"$(</root/.npm/_logs/*.log)\"; echo \"tsc done compiling, beginning serving\""
+    "compile": "npm run clear; echo \"shx done executing, running tsc\"; npx tsc src/index.ts --target es2018; echo \"$(</root/.npm/_logs/*.log)\"; echo \"tsc done compiling, beginning serving\""
   },
   "standard": {
     "env": [
