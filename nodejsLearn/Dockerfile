@@ -5,5 +5,5 @@ COPY package*.json ./
 RUN npm ci
 COPY . .
 EXPOSE ${PORT:-3030}
-ENTRYPOINT [ "npm", "run", "start", "--loglevel", "verbose" ]
+ENTRYPOINT [ "npm", "run", "start" ]
 # runs on port 3030

@@ -27,10 +27,10 @@
     "test": "npm run lint && npm run compile && npm run mocha",
     "lint": "npx eslint src/. test/. --config .eslintrc.json --ext .ts --fix",
     "dev": "npx --loglevel verbose ts-node-dev --debug --no-notify src/",
-    "serve": "node lib/",
+    "serve": "node --loglevel verbose lib/",
     "start": "npm run compile && npm run serve",
     "mocha": "npx mocha --require ts-node/register --require source-map-support/register \"test/**/*.ts\" --recursive --exit",
-    "compile": "npx shx rm -rf lib/ && npx tsc --verbose --generateTrace"
+    "compile": "npx shx rm -rf lib/ && npx --loglevel verbose tsc --verbose --build"
   },
   "standard": {
     "env": [
