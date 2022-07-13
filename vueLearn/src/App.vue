@@ -14,7 +14,7 @@ const msg = "Random number fetcher";
 
 <template>
   <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />AAA{{12}}
+    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
 
     <div class="wrapper">
       <HelloWorld :msg="msg" />
