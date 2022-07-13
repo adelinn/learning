@@ -48,7 +48,8 @@
     "@types/serve-favicon": "^2.5.3",
     "@typescript-eslint/eslint-plugin": "^5.30.0",
     "@typescript-eslint/parser": "^5.30.0",
-    "eslint": "^8.18.0"
+    "eslint": "^8.18.0",
+    "typescript": "^4.7.4"
   },
   "dependencies": {
     "@feathersjs/authentication-oauth": "^4.5.15",
