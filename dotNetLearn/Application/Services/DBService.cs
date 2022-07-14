@@ -5,10 +5,12 @@ namespace dotNetLearn.Services;
 
 public class RandDBContext : DbContext
 {
+    private readonly ILogger<RandDBContext>? _logger;
     public DbSet<RandRecord> RandRecords { get; set; }
 
-    public RandDBContext(DbContextOptions<RandDBContext> opt): base(opt){
-        //
+    public RandDBContext(DbContextOptions<RandDBContext> opt, ILogger<RandDBContext>? logger=null): base(opt){
+        _logger = logger;
+        if(_logger != null) _logger.LogInformation("Initialising DB...");
     }
     
     // protected override void OnModelCreating(ModelBuilder modelBuilder)

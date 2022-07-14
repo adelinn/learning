@@ -21,6 +21,7 @@ public class RandommController : ControllerBase
     [EnableCors("frontend")]
     [HttpGet(Name = "GetRandom")]
     public ActionResult<List<RandRecord>> Get() {
+        _logger.LogInformation("Generating and adding random numbers to DB...");
         randGenerator.Add();
         return randGenerator.GetAll();
     }
