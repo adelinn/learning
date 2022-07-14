@@ -4,7 +4,11 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
 if((Environment.GetEnvironmentVariable("PORT")??"")!="") builder.WebHost.UseUrls("http://+:"+Environment.GetEnvironmentVariable("PORT"));
+
+
 // Add services to the container.
+if((Environment.GetEnvironmentVariable("APPLICATIONINSIGHTS_CONNECTION_STRING")??"")!="") builder.Services.AddApplicationInsightsTelemetry();
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("frontend",
