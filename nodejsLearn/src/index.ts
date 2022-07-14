@@ -1,5 +1,10 @@
+if(process.env.APPLICATIONINSIGHTS_CONNECTION_STRING) {
+  const appInsights = require('applicationinsights');
+  appInsights.setup(process.env.APPLICATIONINSIGHTS_CONNECTION_STRING);
+}
 import logger from './logger';
 import app from './app';
+
 
 const port = process.env.PORT || process.env.CONTAINER_APP_PORT || app.get('port');
 const server = app.listen(port);
