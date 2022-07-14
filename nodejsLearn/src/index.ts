@@ -1,6 +1,6 @@
 if(process.env.APPLICATIONINSIGHTS_CONNECTION_STRING) {
   const appInsights = require('applicationinsights');
-  appInsights.setup(process.env.APPLICATIONINSIGHTS_CONNECTION_STRING);
+  appInsights.setup(process.env.APPLICATIONINSIGHTS_CONNECTION_STRING).start();
 }
 import logger from './logger';
 import app from './app';
