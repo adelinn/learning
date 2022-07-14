@@ -7,7 +7,8 @@ if((Environment.GetEnvironmentVariable("PORT")??"")!="") builder.WebHost.UseUrls
 
 
 // Add services to the container.
-if((Environment.GetEnvironmentVariable("APPLICATIONINSIGHTS_CONNECTION_STRING")??"")!="") builder.Services.AddApplicationInsightsTelemetry();
+
+if((Environment.GetEnvironmentVariable("APPLICATIONINSIGHTS_CONNECTION_STRING")??"")!="") builder.Services.AddApplicationInsightsTelemetry(Environment.GetEnvironmentVariable("APPLICATIONINSIGHTS_CONNECTION_STRING"));
 
 builder.Services.AddCors(options =>
 {
@@ -29,6 +30,9 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+
+var logger = app.Services.GetRequiredService<ILogger<Program>>();
+logger.LogInformation("Host created.");
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
