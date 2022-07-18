@@ -1,5 +1,6 @@
 using dotNetLearn.Services;
 using Microsoft.EntityFrameworkCore;
+using Google.Cloud.Diagnostics.AspNetCore3;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,9 +9,11 @@ if((Environment.GetEnvironmentVariable("PORT")??"")!="") builder.WebHost.UseUrls
 
 // Add services to the container.
 var toLog = "";
-if((Environment.GetEnvironmentVariable("APPLICATIONINSIGHTS_CONNECTION_STRING")??"")!="") {
+if((Environment.GetEnvironmentVariable("APPLICATIONINSIGHTS_CONNECTION_STRING")??"")!="") { //Azure
     toLog+="Got connection string.\n";
     builder.Services.AddApplicationInsightsTelemetry(Environment.GetEnvironmentVariable("APPLICATIONINSIGHTS_CONNECTION_STRING"));
+} else if((Environment.GetEnvironmentVariable("PORT")??"")!=""){ //GCP
+    builder.Services.AddGoogleDiagnosticsForAspNetCore();
 }
 
 builder.Services.AddCors(options =>
