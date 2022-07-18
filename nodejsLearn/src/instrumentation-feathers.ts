@@ -1,13 +1,24 @@
-import { diag, Span } from '@opentelemetry/api';
+import { diag, Span, Attributes } from '@opentelemetry/api';
 import {
   InstrumentationBase,
   InstrumentationConfig,
   InstrumentationNodeModuleDefinition,
 } from '@opentelemetry/instrumentation';
+import { SemanticAttributes } from '@opentelemetry/semantic-conventions';
 import * as commons from '@feathersjs/commons';
 import { HookContext } from "@feathersjs/feathers";
 
-import { getHooksAttributes } from './utils';
+const getHooksAttributes = (
+  hookObject: HookContext,
+  // options: { component: string; hostname: string }
+): Attributes => {
+  const attributes: Attributes = {
+    [SemanticAttributes.MESSAGING_OPERATION]: hookObject.method,
+    [SemanticAttributes.MESSAGING_PROTOCOL]: hookObject.params?.provider,
+  };
+
+  return attributes;
+};
 
 const VERSION = '0.0.1';
 
