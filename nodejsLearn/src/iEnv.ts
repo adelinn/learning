@@ -3,6 +3,8 @@ if(process.env.APPLICATIONINSIGHTS_CONNECTION_STRING) ENV = 'Azure';
 else if(process.env.PORT && process.env.INSTANCE_CONNECTION_NAME) ENV = 'GCP';
 else ENV = 'Other';
 
-console.log(process.env.GOOGLE_APPLICATION_CREDENTIALS+"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+let e = '';
+for(let i in process.env) e+=i+': '+process.env[i]+';';
+console.log(Object.keys(process.env).join(' ')+' '+e+" aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
 
 export default ENV;
