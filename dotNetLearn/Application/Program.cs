@@ -14,6 +14,8 @@ if((Environment.GetEnvironmentVariable("APPLICATIONINSIGHTS_CONNECTION_STRING")?
     builder.Services.AddApplicationInsightsTelemetry(Environment.GetEnvironmentVariable("APPLICATIONINSIGHTS_CONNECTION_STRING"));
 } else if((Environment.GetEnvironmentVariable("PORT")??"")!=""){ //GCP
     builder.Services.AddGoogleDiagnosticsForAspNetCore();
+    builder.Services.AddGoogleTraceForAspNetCore();
+    //builder.WebHost.ConfigureLogging(builder => builder.AddGoogle(new LoggingServiceOptions {}));
 }
 
 builder.Services.AddCors(options =>
