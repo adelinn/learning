@@ -1,6 +1,7 @@
 using dotNetLearn.Services;
 using Microsoft.EntityFrameworkCore;
 using Google.Cloud.Diagnostics.AspNetCore3;
+using Google.Cloud.Diagnostics.Common;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,8 +14,18 @@ if((Environment.GetEnvironmentVariable("APPLICATIONINSIGHTS_CONNECTION_STRING")?
     toLog+="Got connection string.\n";
     builder.Services.AddApplicationInsightsTelemetry(Environment.GetEnvironmentVariable("APPLICATIONINSIGHTS_CONNECTION_STRING"));
 } else if((Environment.GetEnvironmentVariable("PORT")??"")!=""){ //GCP
-    //builder.Services.AddGoogleDiagnosticsForAspNetCore();
-    builder.Services.AddGoogleTraceForAspNetCore();
+    // Explicitly create trace options that will propagate any exceptions thrown during tracing.
+    RetryOptions retryOptions = RetryOptions.NoRetry(ExceptionHandling.Propagate);
+    // Also set the no buffer option so that tracing is attempted immediately.
+    BufferOptions bufferOptions = BufferOptions.NoBuffer();
+    TraceOptions traceOptions = TraceOptions.Create(bufferOptions: bufferOptions, retryOptions: retryOptions);
+
+    builder.Services.AddGoogleDiagnosticsForAspNetCore(new AspNetCoreTraceOptions{
+        ServiceOptions = new TraceServiceOptions {
+            Options = traceOptions
+        }
+    });
+    //builder.Services.AddGoogleTraceForAspNetCore();
     //builder.WebHost.ConfigureLogging(builder => builder.AddGoogle(new LoggingServiceOptions {}));
 }
 
