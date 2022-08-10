@@ -7,7 +7,9 @@ terraform {
   }
 }
 
-provider "docker" {}
+provider "docker" {
+    host = "unix:///home/adelin/.docker/desktop/docker.sock"
+}
 
 resource "docker_image" "nginx" {
   name         = "nginx:latest"
